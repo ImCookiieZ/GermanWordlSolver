@@ -1,0 +1,15 @@
+{
+  "name": "wortliste",
+  "version": "1.0.0",
+  "description": "Deutsche Wortliste reproduzierbar erzeugen",
+  "main": "main.ts",
+  "scripts": {
+    "start": "ts-node main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.5.1"
+  }
+}
