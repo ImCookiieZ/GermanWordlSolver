@@ -1,10 +1,8 @@
 import fs from 'fs';
-import { Letter, MetaData } from './interfaces';
 import { LANGUAGE } from "../main"
-import { PATH } from './meta';
 
 const words = fs.readFileSync(`./wordlists/words-${LANGUAGE}.txt`, 'utf-8')
-const flags = "gi"
+const flags = "g"
 const whitespaceRegex = new RegExp("\\s", flags)
 
 const addVariableLetters = (counter: number) => {
@@ -20,8 +18,13 @@ const buildLetterPositionRegex = (known: Array<string>): RegExp => {
     const knownLength = known.length;
     let baseRegex = "\\s";
     let counter = 0;
-
-    for (let i = 0; i < knownLength; i++) {
+    
+    if (known[0] == "*") {
+        baseRegex += "[A-Z]"
+    } else {
+        baseRegex += known[0].toUpperCase()
+    }
+    for (let i = 1; i < knownLength; i++) {
         const char = known[i];
 
         if (char !== "*") {

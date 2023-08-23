@@ -9,3 +9,16 @@ export type MetaData = {
     tried: Array<string>,
     wrong: Array<string> 
 }
+export type Frequencies = {
+    general: {
+      [key: string]: {
+        [innerKey: string]: number;
+      };
+    };
+    starting: {
+      [key: string]: number;
+    };
+    ending: {
+      [key: string]: number;
+    };
+  }
