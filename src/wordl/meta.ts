@@ -1,5 +1,5 @@
 import { MetaData } from "./interfaces";
-import { LANGUAGE } from "../main"
+import { LANGUAGE } from "../../main"
 import fs from "fs"
 
 const getMetaData = () => {

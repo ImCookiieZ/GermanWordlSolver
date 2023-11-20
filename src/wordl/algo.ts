@@ -1,8 +1,10 @@
 import { Letter, MetaData } from './interfaces'
 import Prebuild from './prebuild'
 import Meta from './meta'
-import { frequencies } from "../wordlists/frequencies"
-import { LANGUAGE } from '../main'
+import { frequencies } from "../../wordlists/frequencies"
+import { LANGUAGE } from '../../main'
+import fs from "fs"
+import prebuild from './prebuild'
 
 const data : MetaData = Meta.getMetaData()
 let word = "*****".split('')
@@ -14,6 +16,7 @@ const getFiveLetterCorrect = (known: Array<string>) => {
 
 const getAllFittingWords = (words_to_check : Array<string>, known_letters: Array<string>) => {
     const regex = Prebuild.buildGeneralLetterRegex(known_letters)
+    console.log(regex)
     return words_to_check.filter((word) => RegExp(regex).exec(word))
 }
 
@@ -76,10 +79,11 @@ export const triedWord = (tried_word: string, letters: Array<Letter>) => {
         }
     }
     data.wrong = data.wrong.filter((el) => !word.includes(el))
+
     let correct_position_letter_words = getFiveLetterCorrect(word);
+    fs.writeFileSync("words.txt", correct_position_letter_words.join("\n"))
     let correct_letter_words = getAllFittingWords(correct_position_letter_words, data.known.map((letter) => letter.char))
     let fitting_words = removeTriedLetters(correct_letter_words, data.known, data.wrong) 
-    console.log(fitting_words)
 
     let sort_fitting_optimal = sortByOptimum(fitting_words)
     let non_dublicate_tries = nonDublicateLetters(sort_fitting_optimal)

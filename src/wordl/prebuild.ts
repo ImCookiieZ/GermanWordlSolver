@@ -1,8 +1,11 @@
 import fs from 'fs';
-import { LANGUAGE } from "../main"
+import { LANGUAGE } from "../../main"
 
-const words = fs.readFileSync(`./wordlists/words-${LANGUAGE}.txt`, 'utf-8')
-const flags = "g"
+const ü_regex = new RegExp("ü", 'g');
+const ä_regex = new RegExp("ä", 'g');
+const ö_regex = new RegExp("ö", 'g');
+const words = fs.readFileSync(`./wordlists/words-${LANGUAGE}.txt`, 'utf-8').toLowerCase().replace(ä_regex, "ae").replace(ü_regex, "ue").replace(ö_regex, "oe")
+const flags = "gi"
 const whitespaceRegex = new RegExp("\\s", flags)
 
 const addVariableLetters = (counter: number) => {
@@ -20,7 +23,7 @@ const buildLetterPositionRegex = (known: Array<string>): RegExp => {
     let counter = 0;
     
     if (known[0] == "*") {
-        baseRegex += "[A-Z]"
+        baseRegex += "[a-z]"
     } else {
         baseRegex += known[0].toUpperCase()
     }

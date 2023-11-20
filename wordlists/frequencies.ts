@@ -1,4 +1,4 @@
-import { Frequencies } from "../src/interfaces"
+import { Frequencies } from "../src/wordl/interfaces"
 
 export const frequencies : Frequencies = {
     "general": {
