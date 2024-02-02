@@ -11,5 +11,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.5.1"
+  },
+  "dependencies": {
+    "address-details": "^2.0.2",
+    "node-geocoder": "^4.2.0"
   }
 }
